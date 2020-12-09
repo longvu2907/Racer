@@ -65,6 +65,4 @@ def game():
         
         pygame.display.update()
         fpsClock.tick(FPS)
-
-#Main
-game()  
+ 
