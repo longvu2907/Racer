@@ -49,7 +49,7 @@ def start_the_game():
     """
     print('Do the job here !')
 
-
+    
 menu = pygame_menu.Menu(height=400,
                         width=600,
                         theme=pygame_menu.themes.THEME_BLUE,

@@ -1,4 +1,2 @@
 import race
 
-
-race.game()
