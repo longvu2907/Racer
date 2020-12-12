@@ -1,38 +1,5 @@
 import pygame
-import random
-
-from pygame.constants import RESIZABLE, VIDEORESIZE
-
-
-#initial window display
-display_width = 1080
-display_height = 720
-FPS = 144
-fpsClock = pygame.time.Clock()
-gameDisplay = pygame.display.set_mode((display_width, display_height), RESIZABLE)
-pygame.display.set_caption('Racer')
-
-#variable initial
-car_width = 90
-pos_y = [100,200,300,400,500]
-skin = 'set1/' 
-choice = 1
-pointer = pygame.image.load('pointer.png')
-
-class Car(object):
-    def __init__(self, source):
-        global pos_y
-        self.x = 0
-        self.y = random.choice(pos_y)
-        self.speed = random.randrange(300,500,10) / 1000
-        pos_y.remove(self.y)
-        self.source = source
-    def display(self):
-        self.carIMG = pygame.image.load(self.source)
-        gameDisplay.blit(self.carIMG, (self.x, self.y))
-    def run(self):
-        self.x += self.speed
-        return self.x + car_width
+import race
 
 class Car_choice():
     def __init__(self): 
@@ -76,8 +43,6 @@ class Car_choice():
         global gameDisplay
         global display_height, display_width
         while True:
-            mouse = pygame.mouse.get_pos()
-            
             self.x1 = gameDisplay.get_width()/5 * 0 + 100
             self.x2 = gameDisplay.get_width()/5 * 1 + 90
             self.x3 = gameDisplay.get_width()/5 * 2 + 90
@@ -112,58 +77,5 @@ class Car_choice():
             elif self.choice(self.x5, skin + 'car5.png') == 5:
                 choice = 5
                 break
-            gameDisplay.blit(pointer, (mouse[0], mouse[1])) 
             pygame.display.update()
             fpsClock.tick(FPS)
-
-def game():
-    Car1 = Car(skin + 'car1.png' )
-    Car2 = Car(skin + 'car2.png' )
-    Car3 = Car(skin + 'car3.png' )
-    Car4 = Car(skin + 'car4.png' )
-    Car5 = Car(skin + 'car5.png' )
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                quit()
-        
-        gameDisplay.fill((0,0,0))
-        Car1.display()
-        Car2.display()
-        Car3.display()
-        Car4.display()
-        Car5.display()
-        if Car1.run() > display_width: 
-            if choice == 1: 
-                print("YOU WIN")
-            else: 
-                print("YOU LOSE")
-            quit()
-        elif Car2.run() > display_width:
-            if choice == 2:
-                print("YOU WIN")
-            else: 
-                print("YOU LOSE")
-            quit()
-        elif Car3.run() > display_width:
-            if choice == 3: 
-                print("YOU WIN")
-            else: 
-                print("YOU LOSE")
-            quit()
-        elif Car4.run() > display_width: 
-            if choice == 4: 
-                print("YOU WIN")
-            else: 
-                print("YOU LOSE")
-            quit()
-        elif Car5.run() > display_width: 
-            if choice == 5: 
-                print("YOU WIN")
-            else: 
-                print("YOU LOSE")
-            quit()
-        
-        pygame.display.update()
-        fpsClock.tick(FPS)
- 

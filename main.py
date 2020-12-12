@@ -1,4 +1,0 @@
-import race
-
-
-race.game()
